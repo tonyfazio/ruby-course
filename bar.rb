@@ -17,6 +17,12 @@ class Bar
   end
 
   def happy_discount
+    if happy_hour?
+      @happy_discount= 0.5
+    else
+      @happy_discount = 0
+    end
+
     if @happy_discount > 1
       @happy_discount = 1
     elsif @happy_discount < 0
@@ -24,19 +30,28 @@ class Bar
     else
       @happy_discount
     end
-
-    if happy_hour?
-      @happy_discount
-    else
-      return 0
-    end
   end
 
   def happy_hour?
-    if Time.now > Time.parse("3:00pm") @@ Time.now <Time.parse("4:00pm")
-      happy_hour?
+    if Time.now > Time.parse("3:00pm") && Time.now < Time.parse("4:00pm")
+      return true
     else
-      return 0
+      return false
+    end
+  end
+
+  def get_price(name)
+    @menu_items.each do |x|
+      if x.name == name
+        if happy_hour?
+          x.price = x.price*@happy_discount
+        else
+          x.price
+        end
+      else
+        puts "The drink doesn't exist"
+      end
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 require 'pry-debugger'
 require "./bar.rb"
-require "time"
+
 
 
 describe Bar do
@@ -82,23 +82,51 @@ describe Bar do
   # DO NOT CHANGE SPECS ABOVE THIS LINE #
 # # # # # # # # # # # # # # # # # # # # # #
 
-  describe '#happy_hour?', :pending => true do
+  describe '#happy_hour?' do
     it "knows when it is happy hour (3:00pm to 4:00pm)" do
-      allow(Time).to receive[:now].and_return(Time.parse("3:30pm"))
+      allow(Time).to receive(:now).and_return(Time.parse("3:30pm"))
       expect(@bar.happy_hour?).to eq(true)
     end
 
-    xit "is not happy hour otherwise" do
+    it "is not happy hour otherwise" do
       # TODO: CONTROL TIME
+      allow(Time).to receive(:now).and_return(Time.parse("5:30pm"))
       expect(@bar.happy_hour?).to eq(false)
     end
   end
 
   context "During normal hours" do
     # TODO: WRITE TESTS TO ENSURE BAR KNOWS NOT TO DISCOUNT
-  end
+    it "knows to not discount" do
+      allow(Time).to receive(:now).and_return(Time.parse("3:30pm"))
+      expect(@bar.happy_hour?).to eq(true)
 
-  context "During happy hours" do
+      expect(@bar.happy_discount).to eq 0.5
+
+      @bar.add_menu_item('Little Johnny', 9.95)
+      item = @bar.menu_items.first
+
+      expect(item.name).to eq 'Little Johnny'
+      expect(item.price).to eq 9.95
+      expect(@bar.get_price(item.name)[0].price).to eq 9.95*0.5
+    end
+  end
+    context "During happy hours" do
     # TODO: WRITE TESTS TO ENSURE BAR DISCOUNTS DURING HAPPY HOUR
+    it "Happy hour" do
+      allow(Time).to receive(:now).and_return(Time.parse("5:30pm"))
+      expect(@bar.happy_hour?).to eq(false)
+
+      expect(@bar.happy_discount).to eq 0
+
+      @bar.add_menu_item('Little Johnny', 9.95)
+      item = @bar.menu_items.first
+
+      expect(item.name).to eq 'Little Johnny'
+      expect(item.price).to eq 9.95
+      expect(@bar.get_price(item.name)[0].price).to eq 9.95
+    end
   end
 end
+
+
