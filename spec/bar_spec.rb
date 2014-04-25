@@ -103,12 +103,16 @@ describe Bar do
 
       expect(@bar.happy_discount).to eq 0.5
 
-      @bar.add_menu_item('Little Johnny', 9.95)
+      @bar.add_menu_item('Little Johnny', 9.90)
       item = @bar.menu_items.first
 
       expect(item.name).to eq 'Little Johnny'
-      expect(item.price).to eq 9.95
-      expect(@bar.get_price(item.name)[0].price).to eq 9.95*0.5
+      expect(item.price).to eq 9.90
+      expect(@bar.get_price(item.name)).to eq 9.90*0.5
+
+      allow(Time).to receive(:now).and_return(Time.parse("5:30pm"))
+      expect(@bar.get_price(item.name)).to eq 9.90
+
     end
   end
     context "During happy hours" do
@@ -124,7 +128,7 @@ describe Bar do
 
       expect(item.name).to eq 'Little Johnny'
       expect(item.price).to eq 9.95
-      expect(@bar.get_price(item.name)[0].price).to eq 9.95
+      expect(@bar.get_price(item.name)).to eq 9.95
     end
   end
 end

@@ -41,12 +41,15 @@ class Bar
   end
 
   def get_price(name)
+    item_price = 0
     @menu_items.each do |x|
       if x.name == name
         if happy_hour?
-          x.price = x.price*@happy_discount
+          item_price = x.price*@happy_discount
+           return item_price
         else
-          x.price
+          item_price = x.price
+           return item_price
         end
       else
         puts "The drink doesn't exist"
