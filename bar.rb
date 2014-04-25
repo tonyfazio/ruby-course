@@ -16,6 +16,25 @@ class Bar
     @menu_items<<x
   end
 
+  def happy_discount
+    if @happy_discount > 1
+      @happy_discount = 1
+    elsif @happy_discount < 0
+      @happy_discount = 0
+    else
+      @happy_discount
+    end
+
+    if happy_hour?
+      @happy_discount
+    else
+      return 0
+    end
+  end
+
+  def happy_hour?
+  end
+
 end
 
 class Item
