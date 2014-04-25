@@ -33,6 +33,10 @@ class Bar
   end
 
   def happy_hour?
+    if Time.now > Time.parse("3:00pm") @@ Time.now <Time.parse("4:00pm")
+      happy_hour?
+    else
+      return 0
   end
 
 end

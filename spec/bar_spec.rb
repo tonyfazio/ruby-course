@@ -1,5 +1,6 @@
 require 'pry-debugger'
 require "./bar.rb"
+require "time"
 
 
 describe Bar do
@@ -83,11 +84,11 @@ describe Bar do
 
   describe '#happy_hour?', :pending => true do
     it "knows when it is happy hour (3:00pm to 4:00pm)" do
-      # TODO: CONTROL TIME
+      allow(Time).to receive[:now].and_return(Time.parse("3:30pm"))
       expect(@bar.happy_hour?).to eq(true)
     end
 
-    it "is not happy hour otherwise" do
+    xit "is not happy hour otherwise" do
       # TODO: CONTROL TIME
       expect(@bar.happy_hour?).to eq(false)
     end
