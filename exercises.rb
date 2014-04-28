@@ -110,6 +110,12 @@ class RPS
   #
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
+  attr_reader :name1, :name2
+  def initialize (name1, name2)
+    @name1 = name1
+    @name2 = name2
+  end
+
 end
 
 

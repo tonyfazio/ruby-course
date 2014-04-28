@@ -89,3 +89,16 @@ describe 'Exercise 9' do
     expect(result).to eq(false)
   end
 end
+
+
+
+describe 'RPS' do
+  it 'initializes with two strings as the players names' do
+    game1 = RPS.new("Tom", "Jon")
+    expect(game1.name1).to eq("Tom")
+    expect(game1.name2).to eq("Jon")
+  end
+end
+
+
+
