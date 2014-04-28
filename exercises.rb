@@ -111,9 +111,34 @@ class RPS
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
   attr_reader :name1, :name2
+  attr_accessor :name1_win_count, :name2_win_count
   def initialize (name1, name2)
     @name1 = name1
     @name2 = name2
+  end
+
+
+  def play(move1, move2)
+    if x == y
+      return "no winner"
+    elsif x > y
+      puts "#{name1} is the winner"
+      name1_win_count +=1
+      if name1_win_count > 1
+        puts "#{name1} wins the game"
+      else
+        puts "play on"
+      end
+    else
+      puts "#{name2} is the winner"
+      name2_win_count +=1
+      if name2_win_count > 1
+        puts "#{name2} wins the game"
+      else
+        puts "play on"
+      end
+    end
+
   end
 
 end
