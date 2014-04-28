@@ -51,7 +51,17 @@ describe 'Exercise 5' do
   end
 end
 
+describe 'Exercise 6' do
+  it "makes last item in array panda" do
+    result = Exercises.ex6([1,2,3,4])
+    expect(result).to eq('panda')
+  end
 
+  it "makes last element GODZILLA if last element is panda already" do
+    result =  Exercises.ex6([1,2,3,'panda'])
+    expect(result).to eq('GODZILLA')
+  end
+end
 
 
 
