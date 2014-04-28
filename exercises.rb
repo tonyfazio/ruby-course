@@ -36,7 +36,11 @@ module Exercises
   # Exercise 4
   #  - Returns the max number of the given array
   def self.ex4(array)
-    # TODO
+    d = array[0]
+    for i in 0...array.length
+      d = array[i] if array[i] > d
+    end
+    d
   end
 
   # Exercise 5
