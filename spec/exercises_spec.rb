@@ -63,7 +63,17 @@ describe 'Exercise 6' do
   end
 end
 
+describe 'Exercise 7' do
+  it "if array contains 'str add str to the end of the array" do
+    result = Exercises.ex7([1,2,3,'str',4], 'str')
+    expect(result).to eq('str')
+  end
 
+  it "if array doesn't have str last element shouldn't have str" do
+    result =  Exercises.ex7([1,2,3,4], 'str')
+    expect(result).to eq(4)
+  end
+end
 
 
 
