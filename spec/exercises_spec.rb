@@ -40,3 +40,20 @@ describe 'Exercise 4' do
     expect(result).to eq(4)
   end
 end
+
+describe 'Exercise 5' do
+  it "iterates throught the array and puts each element" do
+    STDOUT.should_receive(:puts).with(1)
+    STDOUT.should_receive(:puts).with(2)
+    STDOUT.should_receive(:puts).with(3)
+    STDOUT.should_receive(:puts).with(4)
+    Exercises.ex5([1,2,3,4])
+  end
+end
+
+
+
+
+
+
+
