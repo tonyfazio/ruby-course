@@ -75,5 +75,10 @@ describe 'Exercise 7' do
   end
 end
 
-
-
+describe 'Exercise 8' do
+  it "iterates throught the hash and prints values" do
+    # Exercises.ex8({ :name => "Bob"})
+    STDOUT.should_receive(:puts).with("Bob")
+    Exercises.ex8({ :name => "Bob" })
+  end
+end
