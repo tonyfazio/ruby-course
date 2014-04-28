@@ -78,7 +78,14 @@ end
 describe 'Exercise 8' do
   it "iterates throught the hash and prints values" do
     # Exercises.ex8({ :name => "Bob"})
-    STDOUT.should_receive(:puts).with("Bob")
+    STDOUT.should_receive(:puts).with("Bob").and_call_original
     Exercises.ex8({ :name => "Bob" })
+  end
+end
+
+describe 'Exercise 9' do
+  it " returns if time is a leap year" do
+    result = Exercises.ex9(Time.now)
+    expect(result).to eq(false)
   end
 end
