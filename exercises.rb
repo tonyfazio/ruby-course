@@ -26,7 +26,11 @@ module Exercises
   # Exercise 3
   #  - Returns the sum of the given array of numbers
   def self.ex3(array)
-    # TODO
+    d = 0
+    for i in 0...array.length
+      d+=array[i]
+    end
+    d
   end
 
   # Exercise 4

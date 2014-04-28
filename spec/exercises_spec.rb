@@ -26,3 +26,10 @@ describe 'Exercise 2' do
     expect(result).to eq(2)
   end
 end
+
+describe 'Exercise 3' do
+  it " returns the sum of the elements in the array" do
+    result = Exercises.ex3([1,2,3,4])
+    expect(result).to eq(10)
+  end
+end
