@@ -88,7 +88,7 @@ describe "Ruby Review: You" do
 
   describe "Your knowledge of implicit returns" do
 
-    xyou "know how to explicitly return a statement" do
+    you "know how to explicitly return a statement" do
       numbers_array = [4,5,2]
       result = MethodReturns.include?(numbers_array, 2)
       expect(result).to eq(true)
@@ -100,7 +100,7 @@ describe "Ruby Review: You" do
       expect(result).to eq(false)
     end
 
-    xyou "know what puts returns" do
+    you "know what puts returns" do
       result = MethodReturns.get_name
       expect(result).to eq "Bob"
     end
