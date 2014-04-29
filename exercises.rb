@@ -115,30 +115,72 @@ class RPS
   def initialize (name1, name2)
     @name1 = name1
     @name2 = name2
+    @name1_win_count = 0
+    @name2_win_count = 0
   end
 
 
   def play(move1, move2)
-    if x == y
-      return "no winner"
-    elsif x > y
-      puts "#{name1} is the winner"
-      name1_win_count +=1
-      if name1_win_count > 1
-        puts "#{name1} wins the game"
+    if move1 == move2
+      puts "It's a tie! Great minds think alike."
+      return 2
+    elsif move1.downcase == "rock"
+      if move2.downcase == "scissors"
+        puts "#{name1} is the winner"
+        @name1_win_count +=1
+        if @name1_win_count > 1
+          puts "#{name1} wins the game"
+        else
+          puts "play on"
+          return 3
+        end
       else
-        puts "play on"
+        puts "#{name2} is the winner"
+        @name2_win_count +=1
+        if @name2_win_count > 1
+          puts "#{name2} wins the game"
+        else
+          puts "play on"
+          return 4
+        end
       end
-    else
-      puts "#{name2} is the winner"
-      name2_win_count +=1
-      if name2_win_count > 1
-        puts "#{name2} wins the game"
+    elsif move1.downcase == "scissors"
+      if move2.downcase == "paper"
+        puts "#{name1} is the winner"
+        @name1_win_count +=1
+        if @name1_win_count > 1
+          puts "#{name1} wins the game"
+        else
+          puts "play on"
+        end
       else
-        puts "play on"
+        puts "#{name2} is the winner"
+        @name2_win_count +=1
+        if @name2_win_count > 1
+          puts "#{name2} wins the game"
+        else
+          puts "play on"
+        end
+      end
+    elsif move1.downcase == "paper"
+      if move2.downcase == "rock"
+        puts "#{name1} is the winner"
+        @name1_win_count +=1
+        if @name1_win_count > 1
+          puts "#{name1} wins the game"
+        else
+          puts "play on"
+        end
+      else
+        puts "#{name2} is the winner"
+        @name2_win_count +=1
+        if @name2_win_count > 1
+          puts "#{name2} wins the game"
+        else
+          puts "play on"
+        end
       end
     end
-
   end
 
 end

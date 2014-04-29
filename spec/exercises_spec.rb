@@ -98,7 +98,58 @@ describe 'RPS' do
     expect(game1.name1).to eq("Tom")
     expect(game1.name2).to eq("Jon")
   end
+
+  # It is initialized with two strings (player names).
+  # It has a `play` method that takes two strings:
+  #   - Each string reperesents a player's move (rock, paper, or scissors)
+  #   - The method returns the winner (player one or player two)
+  #   - If the game is over, it returns a string stating that the game is already over
+  # It ends after a player wins 2 of 3 games
+  it 'has a PLAY method that takes each players move and returns winner' do
+    game1 = RPS.new("Tom", "Jon")
+    expect(game1.play("rock","rock")).to eq(2)
+    expect(game1.play("rock","scissors")).to eq(3)
+    expect(game1.play("rock","paper")).to eq(4)
+  end
+
+  it 'ends the game after a player wins 2 of 3 games' do
+    game1 = RPS.new("Tom", "Jon")
+    game1.play("rock","rock")
+    game1.play("rock","scissors")
+    game1.play("rock","scissors")
+    expect(game1.name1_win_count).to eq(2)
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
