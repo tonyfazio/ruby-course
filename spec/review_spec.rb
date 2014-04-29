@@ -119,7 +119,7 @@ describe "Ruby Review: You" do
       expect(bob.last_jump_height).to eq "I last jumped 2 inches."
     end
 
-    xyou "know about block scope" do
+    you "know about block scope" do
       data = [
         { :name => "Joe", :salary => 100 },
         { :name => "Sally", :salary => 1000 }
