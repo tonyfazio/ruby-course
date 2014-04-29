@@ -96,7 +96,7 @@ module Exercises
   end
 end
 
-
+require 'io/console'
 class RPS
   # Rock, Paper, Scissors
   # Make a 2-player game of rock paper scissors. It should have the following:
@@ -111,10 +111,12 @@ class RPS
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
   attr_reader :name1, :name2
-  attr_accessor :name1_win_count, :name2_win_count
-  def initialize (name1, name2)
-    @name1 = name1
-    @name2 = name2
+  attr_accessor :name1_win_count, :name2_win_count, :player1, :player2
+  def initialize (player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @name1 = @player1.name
+    @name2 = @player2.name
     @name1_win_count = 0
     @name2_win_count = 0
   end
@@ -123,71 +125,93 @@ class RPS
   def play(move1, move2)
     if move1 == move2
       puts "It's a tie! Great minds think alike."
-      return 2
-    elsif move1.downcase == "rock"
-      if move2.downcase == "scissors"
-        puts "#{name1} is the winner"
+      p1_new_move = STDIN.noecho(&:gets)
+      p2_new_move = STDIN.noecho(&:gets)
+      play(p1_new_move, p2_new_move)
+    elsif move1 = "rock"
+      if move2 = "scissors"
+        puts "#{@name1} is the winner"
         @name1_win_count +=1
         if @name1_win_count > 1
-          puts "#{name1} wins the game"
+          puts "#{@name1} wins the game"
         else
           puts "play on"
-          return 3
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       else
-        puts "#{name2} is the winner"
+        puts "#{@name2} is the winner"
         @name2_win_count +=1
         if @name2_win_count > 1
-          puts "#{name2} wins the game"
+          puts "#{@name2} wins the game"
         else
           puts "play on"
-          return 4
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       end
-    elsif move1.downcase == "scissors"
-      if move2.downcase == "paper"
-        puts "#{name1} is the winner"
+    elsif move1 = "scissors"
+      if move2 = "paper"
+        puts "#{@name1} is the winner"
         @name1_win_count +=1
         if @name1_win_count > 1
-          puts "#{name1} wins the game"
+          puts "#{@name1} wins the game"
         else
           puts "play on"
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       else
-        puts "#{name2} is the winner"
+        puts "#{@name2} is the winner"
         @name2_win_count +=1
         if @name2_win_count > 1
-          puts "#{name2} wins the game"
+          puts "#{@name2} wins the game"
         else
           puts "play on"
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       end
-    elsif move1.downcase == "paper"
-      if move2.downcase == "rock"
-        puts "#{name1} is the winner"
+    elsif move1 = "paper"
+      if move2 = "rock"
+        puts "#{@name1} is the winner"
         @name1_win_count +=1
         if @name1_win_count > 1
-          puts "#{name1} wins the game"
+          puts "#{@name1} wins the game"
         else
           puts "play on"
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       else
-        puts "#{name2} is the winner"
+        puts "#{@name2} is the winner"
         @name2_win_count +=1
         if @name2_win_count > 1
-          puts "#{name2} wins the game"
+          puts "#{@name2} wins the game"
         else
           puts "play on"
+          p1_new_move = STDIN.noecho(&:gets)
+          p2_new_move = STDIN.noecho(&:gets)
+          play(p1_new_move, p2_new_move)
         end
       end
     end
   end
-
 end
 
 
-require 'io/console'
+
 class RPSPlayer
+    attr_accessor :move, :name
+
+    def get_name
+      @name = gets.chomp
+    end
   # (No specs are required for RPSPlayer)
   #
   # Complete the `start` method so that it uses your RPS class to present
@@ -199,14 +223,13 @@ class RPSPlayer
   #
   # When the game ends, ask if the player wants to play again.
   def start
-
     # TODO
 
     # PRO TIP: Instead of using plain `gets` for grabbing a player's
     #          move, this line does the same thing but does NOT show
     #          what the player is typing! :D
     # This is also why we needed to require 'io/console'
-    # move = STDIN.noecho(&:gets)
+    @move = STDIN.noecho(&:gets)
   end
 end
 
