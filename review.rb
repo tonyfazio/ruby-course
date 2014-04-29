@@ -48,7 +48,7 @@ class ArrayProblems
   # # # # # # #
 
   def self.list_wardrobe_item_sizes(array)
-    # TODO: Use the map method to create an array of wardrobe item sizes
+    array.map {|x| x[:size] }
   end
 
   # # # # # # #
